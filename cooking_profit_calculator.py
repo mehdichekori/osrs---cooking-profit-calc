@@ -15,22 +15,38 @@ class CookingProfitCalculator:
         self.volume_cache: Dict[int, int] = {}
         # Enhanced item data with cooking levels and XP
         self.item_data = [
-            {"name": "Karambwan", "raw_id": 3142, "cooked_id": 3144, "burn_level": 99, "cooking_xp": 190},
+            # New fish items from wiki
+            {"name": "Sardine", "raw_id": 327, "cooked_id": 325, "burn_level": 38, "cooking_xp": 40},
+            {"name": "Herring", "raw_id": 345, "cooked_id": 347, "burn_level": 41, "cooking_xp": 50},
+            {"name": "Mackerel", "raw_id": 353, "cooked_id": 355, "burn_level": 45, "cooking_xp": 60},
+            {"name": "Trout", "raw_id": 335, "cooked_id": 333, "burn_level": 49, "cooking_xp": 70},
+            {"name": "Cod", "raw_id": 341, "cooked_id": 339, "burn_level": 51, "cooking_xp": 75},
+            {"name": "Pike", "raw_id": 349, "cooked_id": 351, "burn_level": 54, "cooking_xp": 80},
+            {"name": "Salmon", "raw_id": 331, "cooked_id": 329, "burn_level": 58, "cooking_xp": 90},
+            {"name": "Tuna", "raw_id": 359, "cooked_id": 361, "burn_level": 63, "cooking_xp": 100},
+            {"name": "Rainbow fish", "raw_id": 10138, "cooked_id": 10136, "burn_level": 63, "cooking_xp": 110},
+            {"name": "Cave eel", "raw_id": 5001, "cooked_id": 5003, "burn_level": 74, "cooking_xp": 115},
+            {"name": "Lobster", "raw_id": 377, "cooked_id": 379, "burn_level": 74, "cooking_xp": 120},
+            {"name": "Bass", "raw_id": 363, "cooked_id": 365, "burn_level": 80, "cooking_xp": 130},
+            {"name": "Swordfish", "raw_id": 371, "cooked_id": 373, "burn_level": 86, "cooking_xp": 140},
+            {"name": "Monkfish", "raw_id": 7944, "cooked_id": 7946, "burn_level": 92, "cooking_xp": 150},
             {"name": "Shark", "raw_id": 383, "cooked_id": 385, "burn_level": 94, "cooking_xp": 210},
-            {"name": "Sea turtle", "raw_id": 395, "cooked_id": 397, "burn_level": 82, "cooking_xp": 211.3},
-            {"name": "Manta ray", "raw_id": 389, "cooked_id": 391, "burn_level": 91, "cooking_xp": 216.2},
-            {"name": "Anglerfish", "raw_id": 13439, "cooked_id": 13441, "burn_level": 84, "cooking_xp": 230},
+            {"name": "Sea turtle", "raw_id": 395, "cooked_id": 397, "burn_level": 99, "cooking_xp": 211.3},
+            {"name": "Manta ray", "raw_id": 389, "cooked_id": 391, "burn_level": 99, "cooking_xp": 216.2},
+            {"name": "Haddock", "raw_id": 32317, "cooked_id": 32320, "burn_level": 99, "cooking_xp": 180},
+            {"name": "Yellowfin", "raw_id": 32325, "cooked_id": 32328, "burn_level": 98, "cooking_xp": 200},
+            {"name": "Anglerfish", "raw_id": 13439, "cooked_id": 13441, "burn_level": 97, "cooking_xp": 230},
+            {"name": "Bluefin", "raw_id": 32341, "cooked_id": 32344, "burn_level": 99, "cooking_xp": 215},
+            {"name": "Dark crab", "raw_id": 11934, "cooked_id": 11936, "burn_level": 99, "cooking_xp": 215},
+            {"name": "Marlin", "raw_id": 32349, "cooked_id": 32352, "burn_level": 99, "cooking_xp": 225},
+            {"name": "Halibut", "raw_id": 32333, "cooked_id": 32336, "burn_level": 99, "cooking_xp": 212.5},
+            {"name": "Karambwan", "raw_id": 3142, "cooked_id": 3144, "burn_level": 99, "cooking_xp": 190},
+            # Special/varrock armor items
             {"name": "Moon antelope", "raw_id": 29113, "cooked_id": 29143, "burn_level": 99, "cooking_xp": 220},
             {"name": "Sun antelope", "raw_id": 29116, "cooked_id": 29140, "burn_level": 95, "cooking_xp": 175},
-            {"name": "Dark crab", "raw_id": 11934, "cooked_id": 11936, "burn_level": 99, "cooking_xp": 215},
-            {"name": "Monkfish", "raw_id": 7944, "cooked_id": 7946, "burn_level": 92, "cooking_xp": 120},
-            {"name": "Lobster", "raw_id": 377, "cooked_id": 379, "burn_level": 74, "cooking_xp": 120},
-            {"name": "Swordfish", "raw_id": 371, "cooked_id": 373, "burn_level": 86, "cooking_xp": 140},
-            {"name": "Tuna", "raw_id": 359, "cooked_id": 361, "burn_level": 65, "cooking_xp": 100},
-            {"name": "Salmon", "raw_id": 331, "cooked_id": 329, "burn_level": 58, "cooking_xp": 90},
-            {"name": "Dashing kebbit", "raw_id": 10132, "cooked_id": 10134, "burn_level": 89, "cooking_xp": 200},
-            {"name": "Pyre fox", "raw_id": 28367, "cooked_id": 28369, "burn_level": 80, "cooking_xp": 180},
-            {"name": "Larupia", "raw_id": 10095, "cooked_id": 10097, "burn_level": 82, "cooking_xp": 199.5}
+            {"name": "Dashing kebbit", "raw_id": 29107, "cooked_id": 29134, "burn_level": 89, "cooking_xp": 200},
+            {"name": "Pyre fox", "raw_id": 29110, "cooked_id": 29137, "burn_level": 80, "cooking_xp": 154},
+            {"name": "Larupia", "raw_id": 29122, "cooked_id": 29146, "burn_level": 82, "cooking_xp": 92}
         ]
 
     def _should_refresh_cache(self) -> bool:
@@ -116,7 +132,7 @@ class CookingProfitCalculator:
             print("-" * 120)
             for item in items:
                 can_cook = cooking_level >= item.burn_level
-                status = "✓ Can cook" if can_cook else "✗ Too high"
+                status = "[+] Can cook" if can_cook else "[-] Too high"
                 print(f"{item.name:<15} | {item.raw_price:>10,d} | {item.cooked_price:>12,d} | {item.profit:>8,d} | {item.roi:>6.1f}% | {item.cooking_xp:>7.1f} | {item.burn_level:>8d} | {item.raw_volume:>10,d} | {item.cooked_volume:>11,d} | {status:>10}")
             print("\n" + "=" * 120)
             best_profit = max(items, key=lambda x: x.profit)
